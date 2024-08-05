@@ -9,19 +9,19 @@ $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DB_NAME);
 
 function getAllMahasiswa()
 {
-global $connection;
+    global $connection;
 
-$sql = "SELECT * FROM mahasiswa";
+    $sql = "SELECT * FROM mahasiswa";
 
-$query = mysqli_query($connection, $sql);
+    $query = mysqli_query($connection, $sql);
 
-$result = [];
+    $result = [];
 
-while($row = mysqli_fetch_assoc($query)){
-    $result[] = $row;
-}
+    while($row = mysqli_fetch_assoc($query)){
+        $result[] = $row;
+    }
 
-return $result;
+    return $result;
 }
 
 function createMahasiswa($nim, $name, $gender, $unit_id)
@@ -40,3 +40,34 @@ function createMahasiswa($nim, $name, $gender, $unit_id)
     }
 }
 
+function getMahasiswaByNim($nim)
+{
+    global $connection;
+
+    $sql = "SELECT * FROM mahasiswa WHERE nim='$nim'";
+
+    $query = mysqli_query($connection, $sql);
+
+    $result = mysqli_fetch_assoc($query);
+
+    return $result;
+}
+
+function updateMahasiswa($nama, $nim)
+{
+    global $connection;
+
+    $sql = "UPDATE mahasiswa SET nama='$nama' WHERE nim='$nim'";
+
+    # digunakan untuk menjalankan query
+    mysqli_query($connection, $sql);
+
+    $result = mysqli_affected_rows($connection);
+
+    if($result >= 0){
+        return true;
+    }else{
+        return false;
+    }
+
+}
