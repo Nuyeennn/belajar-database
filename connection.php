@@ -2,7 +2,7 @@
 
 CONST HOST      = "localhost";
 CONST USERNAME  = "root";
-CONST PASSWORD  = "2";
+CONST PASSWORD  = "";
 CONST DB_NAME   = "univ_brawijaya";
 
 $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DB_NAME);
